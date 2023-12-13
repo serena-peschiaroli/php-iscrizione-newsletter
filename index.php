@@ -5,7 +5,7 @@
 session_start();
 
 //inizializzare variabili come stringhe vuote per tenere il valore dell'input e per assicurare che le variabili esistano anche quando il form non è stato inviato
-$email= "";
+$email = "";
 $emailErr = "";
 
 
@@ -14,31 +14,33 @@ $emailErr = "";
 
 require_once './functions.php';
 
-var_dump($_POST);
-/* validare email: 
+// var_dump($_POST);
+// validare email: 
 
 
-*/
 
-
-if (isset($_POST['email'])){
+if (isset($_POST['email'])) {
     $email = $_POST['email'];
     if (empty($email)) {
         $emailErr = 'inserire un indirizzo email!';
         echo "<div class='alert alert-warning' role='alert'>$emailErr</div>";
-
-    }elseif (!validateEmail($email)){
+    } elseif (!validateEmail($email)) {
 
         $emailErr = 'formato non valido!';
         echo "<div class='alert alert-danger' role='alert'>$emailErr</div>";
-        
-    }else {
+    } else {
         $_SESSION['valid_email'] = $email;
+        header('Location: ./thankyou.php');
+        die;
 
-        echo "<div class='alert alert-success' role='alert'>$email è un indirizzo valido! </div>";
+        // echo "<div class='alert alert-success' role='alert'>$email è un indirizzo valido! </div>";
+
 
     }
 }
+
+
+
 
 
 
@@ -61,10 +63,12 @@ if (isset($_POST['email'])){
         <form action="index.php" method="post">
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="text" class="form-control" id="email"  placeholder="Enter email" name="email">
-                
+                <!-- assegnando all'input value= email, permette di mantenere dinamicamente l'email inserita -->
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" 
+                value="<?php echo ($email); ?>">
+
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
     </div>
 

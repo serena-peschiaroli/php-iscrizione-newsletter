@@ -28,15 +28,24 @@ Rifattorizzare il codice in modo che la logica di controllo dell'email sia conte
   se sì, la var $email = post[email]; allora eseguire un'ulteriore verifica: se email = empty, messaggio di errore; invece se !validateEmail con parametro l'email, stampare un messaggio di errore, ALTRIMENTI  stampa messaggio di conferma; ALTRIMENTI, messaggio di conferma
 
 
-- [] Milestone 3: (Stile dell'alert)
+- [X] Milestone 3: (Stile dell'alert)
 Modificare la classe dell'alert in base all'esito della funzione di validazione.
 Utilizzare la classe alert-success per indicare un esito positivo e alert-danger per un esito negativo.
 
+**soluzione:**
+una volta che le variabili email ed emailErr sono inizializzate, si possono utilizzare anche per l'alert; utilizzando le classi di bootstrap, tramite "" stampare in pagina class='alert alert-Classe' role='alert'>$emailErr  con classe=warning per mail vuota, classe=danger per mail invalida, classe=success per mail valida;
+
 **BONUS:**
-- [] Milestone 4: (Redirect)
+- [X] Milestone 4: (Redirect)
 Implementare un redirect a una pagina di ringraziamento (thankyou.php) in caso di esito positivo.
 Utilizzare la session PHP per memorizzare l'indirizzo email registrato durante la procedura di validazione.
 
-- [] Milestone 5: (Visualizzare valore errato)
+**soluzione:**
+tramite  $_SESSION['valid_email'] = $email; si conservano i dati della mail valida; si reindirizza l'utente a thankyou.php e si chiude la sessione. Tramite bottone con action "index.php" si torna indientro
+
+
+- [X] Milestone 5: (Visualizzare valore errato)
 Nel caso di esito negativo, garantire che il valore inserito precedentemente nel campo di input rimanga visibile.
 Sfruttare le variabili GET per mantenere e visualizzare l'indirizzo email errato nell'input.
+**soluzione**
+sfruttando la variabile email, inserire nell'imput value = email per mostrare l'user input dopo l'invio per dare un feedback all'utente in caso di errori 
