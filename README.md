@@ -22,7 +22,10 @@ Rifattorizzare il codice in modo che la logica di controllo dell'email sia conte
 **soluzione:**
   1. creare form in index.php; nella parte di php, iniziare la sessione (session start()) e require_once functions.php. 
   2. in function.php, creare funzione per validare l'email utilizzando  filter_var($email, FILTER_VALIDATE_EMAIL);
-  3. in index.php, controllare se l'email è stata presa da $_POST; se sì, la var $email = post[email]; allora eseguire un'ulteriore verifica richiamando la funzione validateEmail con parametro l'email presa da post; Se la verifca procede a buon fine, stampa messaggio di conferma; ALTRIMENTI, messaggio di errore
+  3. in index.php:
+   -inizializzare variabili email e emailErr come stringhe vuote (per emailErr, si può generare un messaggio di errore)
+  4.  controllare se l'email è stata presa da $_POST; 
+  se sì, la var $email = post[email]; allora eseguire un'ulteriore verifica: se email = empty, messaggio di errore; invece se !validateEmail con parametro l'email, stampare un messaggio di errore, ALTRIMENTI  stampa messaggio di conferma; ALTRIMENTI, messaggio di conferma
 
 
 - [] Milestone 3: (Stile dell'alert)

@@ -1,13 +1,13 @@
 <?php
 
-/* Definire funzione per validazione
-function validateEmail($email)
-{
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
-}*/
 
 //session start;
 session_start();
+
+//inizializzare variabili come stringhe vuote per tenere il valore dell'input e per assicurare che le variabili esistano anche quando il form non è stato inviato
+$email= '';
+$emailErr = '';
+
 
 //require_once functions.php x validare indirizzo email
 
@@ -16,29 +16,25 @@ require_once './functions.php';
 
 var_dump($_POST);
 /* validare email: 
-prendere email da post; prendere validazione da funzione in functions.php;
 
-se filter_var di email, filter_validate_email {
-    l'indirzzo è valido (altre azioni se valido)
-}else: alert, indirizzo non valido
-} 
 
 */
 
 
 if (isset($_POST['email'])){
     $email = $_POST['email'];
+    if (empty($email)) {
+        $emailErr = 'inserire un indirizzo email!';
+    }elseif (!validateEmail($email)){
 
-    if (validateEmail($email)) {
-        // se l'email è valida: si può conservarla nella sessione; si può procedere con la thankyoupage
-        //mantenere la sessione
-        $_SESSION['valid_email'] = $email;
-        //per il momentp, stampa msg di validazione
-        echo "<p>$email è un indirizzo valido</p>";
-
+        $emailErr = 'formato non valido!';
+        echo "<p> $emailErr </>";
+        
     }else {
-        //alert msg
-        echo "<p>ERRORE! $email NON è un indirizzo valido</p>";
+        $_SESSION['valid_email'] = $email;
+
+        echo "<p> $email è un indirizzo valido </>";
+
     }
 }
 
