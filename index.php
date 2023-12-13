@@ -5,8 +5,8 @@
 session_start();
 
 //inizializzare variabili come stringhe vuote per tenere il valore dell'input e per assicurare che le variabili esistano anche quando il form non è stato inviato
-$email= '';
-$emailErr = '';
+$email= "";
+$emailErr = "";
 
 
 //require_once functions.php x validare indirizzo email
@@ -25,15 +25,17 @@ if (isset($_POST['email'])){
     $email = $_POST['email'];
     if (empty($email)) {
         $emailErr = 'inserire un indirizzo email!';
+        echo "<div class='alert alert-warning' role='alert'>$emailErr</div>";
+
     }elseif (!validateEmail($email)){
 
         $emailErr = 'formato non valido!';
-        echo "<p> $emailErr </>";
+        echo "<div class='alert alert-danger' role='alert'>$emailErr</div>";
         
     }else {
         $_SESSION['valid_email'] = $email;
 
-        echo "<p> $email è un indirizzo valido </>";
+        echo "<div class='alert alert-success' role='alert'>$email è un indirizzo valido! </div>";
 
     }
 }
