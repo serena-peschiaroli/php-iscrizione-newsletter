@@ -20,30 +20,37 @@ session_start();
 </head>
 
 <body>
-    <div class="container">
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 mb-5 text-center">
+                <h1> Grazie per esserti iscritto alla newsletter!</h1>
+            </div>
 
+            <div class="col-12 mb-3 text-center">
+                <?php
+                //controllare se l'email corrisponde a Session= valid email;
+                if (isset($_SESSION['valid_email'])) {
+                    $email = $_SESSION['valid_email'];
+                    //messaggio di conferma iscrizione
+                    echo "<h2>Ti sei iscritto con l'indirizzo: $email</h2>";
+                    //resetta counter x tentativi iscrizione
 
-        <h1> Grazie per esserti iscritto alla newsletter!</h1>
+                    $_SESSION['subscription_attempts'] = 0;
+                }
 
-        <?php
-    //controllare se l'email corrisponde a Session= valid email;
-        if (isset($_SESSION['valid_email'])) {
-            $email = $_SESSION['valid_email'];
-            //messaggio di conferma iscrizione
-            echo "<h2>Ti sei iscritto con l'indirizzo: $email</h2>";
-            //resetta counter x tentativi iscrizione
+                ?>
+            </div>
 
-            $_SESSION['subscription_attempts'] = 0;
-        }
+            <div class="col align-self-center text-center">
+                <form action="index.php" method="post">
+                    <!-- bottone x tornare a index -->
+                    <button type="submit" class="btn btn-outline-success">Indietro</button>
+                </form>
+            </div>
 
-        ?>
-        <div class="div">
-            <form action="index.php" method="post">
-                <!-- bottone x tornare a index -->
-                <button type="submit" class="btn btn-outline-success">Indietro</button>
-            </form>
         </div>
-    </div>
+
+    </section>
 
 
 </body>

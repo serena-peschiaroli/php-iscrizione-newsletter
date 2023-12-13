@@ -72,19 +72,35 @@ if (isset($_POST['email'])) {
 </head>
 
 <body>
-    <div class="container mt-5">
-        <form action="index.php" method="post">
-            <div class="form-group">
-                <label for="email">Email address</label>
+    <section class="container mt-5">
+        <div class="col-12 text-center mb-5">
+            <h1>Iscriviti alla newsletter</h1>
+        </div>
+        <form action="index.php" method="post" class="row g-3 justify-content-center align-items-center">
+            <div class="col-2">
+                <label for="email" class="col-form-label text-center">Iscriviti:</label>
+            </div>
+            <div class="col-8">
                 <!-- assegnando all'input value= email, permette di mantenere dinamicamente l'email inserita -->
-                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" 
-                value="<?php echo ($email); ?>">
+                <input type="text" class="form-control" id="email" placeholder="Inserisci il tuo indirizzo" name="email" value="<?php echo ($email); ?>">
 
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Submit</button>
-        </form>
-    </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
 
+        </form>
+
+
+
+
+
+
+
+        
+
+
+    </section>
 </body>
 
 </html>
