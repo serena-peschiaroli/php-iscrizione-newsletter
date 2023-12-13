@@ -17,6 +17,12 @@ require_once './functions.php';
 // var_dump($_POST);
 // validare email: 
 
+// controlla se esiste la variabile x tentativi iscrizione
+
+if (!isset($_SESSION['subscription_attempts'])) {
+    $_SESSION['subscription_attempts'] = 0;
+}
+
 
 
 if (isset($_POST['email'])) {
@@ -25,9 +31,16 @@ if (isset($_POST['email'])) {
         $emailErr = 'inserire un indirizzo email!';
         echo "<div class='alert alert-warning' role='alert'>$emailErr</div>";
     } elseif (!validateEmail($email)) {
+        $_SESSION['subscription_attempts']++;
 
         $emailErr = 'formato non valido!';
         echo "<div class='alert alert-danger' role='alert'>$emailErr</div>";
+        if ($_SESSION['subscription_attempts'] >= 3) {
+            $_SESSION['freeze'] = time();
+            // cancella la sessione dopo 3 tentativi
+            header('Location: ./freeze.php');
+            die;
+        }
     } else {
         $_SESSION['valid_email'] = $email;
         header('Location: ./thankyou.php');

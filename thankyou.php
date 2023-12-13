@@ -31,6 +31,9 @@ session_start();
             $email = $_SESSION['valid_email'];
             //messaggio di conferma iscrizione
             echo "<h2>Ti sei iscritto con l'indirizzo: $email</h2>";
+            //resetta counter x tentativi iscrizione
+
+            $_SESSION['subscription_attempts'] = 0;
         }
 
         ?>

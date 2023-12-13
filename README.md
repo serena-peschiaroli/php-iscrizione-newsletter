@@ -49,3 +49,12 @@ Nel caso di esito negativo, garantire che il valore inserito precedentemente nel
 Sfruttare le variabili GET per mantenere e visualizzare l'indirizzo email errato nell'input.
 **soluzione**
 sfruttando la variabile email, inserire nell'imput value = email per mostrare l'user input dopo l'invio per dare un feedback all'utente in caso di errori 
+
+
+**AGGIUNTA**
+
+come visto a lezione, implementata una pagina freeze dove inviare l'utente se 3 validazioni sono errate;
+si setta in index.php un counter e ad ogni validazione fallita, counter +1;
+al raggiungimento di >= 3, redirect su freeze.php;
+allo stesse tempo, si registra la $_SESSION['freeze'] = time();
+su freeze, si calcola il tempo rimanente in cui non si potrà procedere a registrarsi alla newsletter; allo scadere del tempo, session destroy e redirect su index.php
