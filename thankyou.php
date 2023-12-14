@@ -2,6 +2,9 @@
 
 session_start();
 
+//class correction:
+$email = $_SESSION['valid_email'];
+
 
 
 ?>

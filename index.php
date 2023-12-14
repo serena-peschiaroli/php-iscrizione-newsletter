@@ -12,10 +12,8 @@ $emailErr = "";
 //require_once functions.php x validare indirizzo email
 
 
-require_once './functions.php';
+require_once __DIR__ . './functions.php';
 
-// var_dump($_POST);
-// validare email: 
 
 // controlla se esiste la variabile x tentativi iscrizione
 
@@ -23,7 +21,8 @@ if (!isset($_SESSION['subscription_attempts'])) {
     $_SESSION['subscription_attempts'] = 0;
 }
 
-
+/* NOTE DA CORREZIONE: possiamo creare una variabile result e portarla a true o false a seconda del risultato della validazione; variabile creata soltanto se avviene il submit del form ( nell'if) 
+e in html php echo if isset result e php ecp result ? 'grazie per esserti iscritto : 'email errata'. */
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
@@ -46,13 +45,13 @@ if (isset($_POST['email'])) {
         header('Location: ./thankyou.php');
         die;
 
-        // echo "<div class='alert alert-success' role='alert'>$email è un indirizzo valido! </div>";
+        
 
 
     }
 }
 
-
+// NOTE DA CORREZIONE: in innput value si può inserire value con condizione; if !empty($POST[$email]) ? $POST[$email] : ''; 
 
 
 
